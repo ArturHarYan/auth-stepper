@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form">
+  <mat-form-field>
+    <mat-label>About Us</mat-label>
+    <textarea
+      matInput
+      formControlName="aboutUs"
+      rows="4"
+      (input)="onInput($event)"
+    ></textarea>
+    @if (form.get('aboutUs')?.hasError('required')) {
+    <mat-error>Please tell us about yourself</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="button-row">
+    <button mat-stroked-button type="button" (click)="previousStep()">
+      Back
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

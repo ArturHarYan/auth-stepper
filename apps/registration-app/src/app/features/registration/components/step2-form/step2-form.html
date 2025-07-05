@@ -1,0 +1,51 @@
+<!-- step2.component.html -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field>
+    <mat-label>Industry</mat-label>
+    <mat-select formControlName="industry">
+      @for (industry of industries; track industry) {
+      <mat-option [value]="industry">{{ industry }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('industry')?.hasError('required')) {
+    <mat-error>Please select an industry</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Experience (years)</mat-label>
+    <input matInput formControlName="experienceInYears" type="number" />
+    @if (form.get('experienceInYears')?.hasError('required')) {
+    <mat-error>Required</mat-error>
+    } @if (form.get('experienceInYears')?.hasError('invalidFormat')) {
+    <mat-error>Must be between 0-50 years</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Your Role</mat-label>
+    <mat-select formControlName="yourRole">
+      @for (role of roles; track role) {
+      <mat-option [value]="role">{{ role }}</mat-option>
+      }
+    </mat-select>
+    @if (form.get('yourRole')?.hasError('required')) {
+    <mat-error>Please select your role</mat-error>
+    }
+  </mat-form-field>
+
+  <div>
+    <button mat-stroked-button type="button" (click)="previousStep()">
+      Back
+    </button>
+    <button
+      mat-raised-button
+      matStepperNext
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Next
+    </button>
+  </div>
+</form>

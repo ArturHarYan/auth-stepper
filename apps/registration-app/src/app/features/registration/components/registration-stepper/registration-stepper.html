@@ -1,0 +1,19 @@
+<mat-horizontal-stepper
+  #stepper
+  linear
+  [selectedIndex]="stepIndex()"
+  (selectionChange)="onStepChange($event)"
+>
+  <mat-step [completed]="isStep1Complete()">
+    <ng-template matStepLabel>Step 1</ng-template>
+  </mat-step>
+
+  <mat-step [completed]="isStep2Complete()">
+    <ng-template matStepLabel>Step 2</ng-template>
+  </mat-step>
+
+  <mat-step [completed]="isStep3Complete()">
+    <ng-template matStepLabel>Step 3</ng-template>
+  </mat-step>
+</mat-horizontal-stepper>
+<router-outlet></router-outlet>
