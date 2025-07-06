@@ -37,7 +37,7 @@ export class StepperService {
 
   public getRegistrationData() {
     const safeData = {
-      email: (this.step1Data() as unknown as IStep1FormData).email,
+      email: (this.step1Data() as unknown as IStep1FormData)?.email,
       ...this.step2Data(),
       ...this.step3Data(),
     };
